@@ -14,7 +14,7 @@ const ShowView: FC<ShowViewProps> = ({ shows }) => {
   return (
     <Card
       variant="outlined"
-      className="flex flex-col items-center border border-black bg-gray-200 m-4 w-64"
+      className="flex flex-col items-center border border-black bg-gray-200 m-4 w-64 h-max "
     >
       <div className="h-60 w-60 mt-2">
         <img
@@ -23,9 +23,7 @@ const ShowView: FC<ShowViewProps> = ({ shows }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center py-2 space-y-2">
-        <ul>
-          <span className="text-red-600">Name: </span> {shows.name}
-        </ul>
+        <ul className="text-xs">{shows.name}</ul>
         <ul>
           <span className="text-red-600">Language: </span> {shows.language}
         </ul>
@@ -36,7 +34,7 @@ const ShowView: FC<ShowViewProps> = ({ shows }) => {
           precision={0.5}
           max={10}
         />
-        <Link to={"/view/" + shows.id}>
+        <Link to={"/views/" + shows.id}>
           <Button variant="contained" className="bg-blue-500 hover:bg-red-600">
             Booking
           </Button>

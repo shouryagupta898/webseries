@@ -1,11 +1,27 @@
 import { call, put } from "redux-saga/effects";
 import { Action } from "../actions";
-import { ShowsLoadedAction } from "../actions/show";
-import { getShows } from "../api";
-function* getShowsSaga(action: Action): Generator<any, any, any> {
+import {
+  ShowDetailLoadedAction,
+  ShowsLoadedAction,
+  ShowsQueryLoadedAction,
+} from "../actions/show";
+import { getShowDetail, getQuerySearch, getShows, getCast } from "../api";
+export function* getShowsSaga(): Generator {
   const show = yield call(getShows);
-  console.log("show", show);
-  const putData = yield put(ShowsLoadedAction(show));
-  console.log("putData", putData);
+  yield put(ShowsLoadedAction(show));
 }
-export default getShowsSaga;
+
+export function* getSearchSaga(action: Action): Generator<any, any, any> {
+  const query = yield call(getQuerySearch, action.payload);
+  yield put(ShowsQueryLoadedAction(query));
+}
+
+export function* getShowDetailSaga(action: Action): Generator<any, any, any> {
+  const detail = yield call(getShowDetail, action.payload);
+  yield put(ShowDetailLoadedAction(detail));
+}
+
+export function* getCastSaga(action: Action): Generator<any, any, any> {
+  const cast = yield call(getCast, action.payload);
+  console.log("cast", cast);
+}

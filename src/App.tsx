@@ -8,7 +8,7 @@ const App: FC = () => {
     <div>
       <Routes>
         <Route index element={<ShowPage />} />
-        <Route path="/view/:id" element={<ShowDetail />} />
+        <Route path="/views/:id" element={<ShowDetail />} />
       </Routes>
     </div>
   );
