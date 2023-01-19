@@ -1,10 +1,6 @@
 import { FC, memo, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import {
-  fetchCastAction,
-  fetchQueryAction,
-  fetchShowsAction,
-} from "../actions/saga";
+import { fetchQueryAction, fetchShowsAction } from "../actions/saga";
 import {
   loadingSelector,
   searchSelector,
@@ -86,7 +82,6 @@ const mapStateToProps = (state: State, ownProps: Partial<ownProps>) => {
 const mapDispatchToProps = {
   getShows: fetchShowsAction,
   getQuerySearch: fetchQueryAction,
-  getCast: fetchCastAction,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

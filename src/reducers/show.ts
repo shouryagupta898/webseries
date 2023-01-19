@@ -5,9 +5,11 @@ import { FETCH_QUERY_SEARCH } from "../actions/saga";
 import {
   SHOWS_LOADED,
   SHOWS_LOADING,
+  SHOW_CAST_LOADED,
   SHOW_DETAIL_LOADED,
   SHOW_QUERY_LOADED,
 } from "../actions/show";
+import { Cast } from "../models/Cast";
 import { Show } from "../models/Show";
 
 type State = {
@@ -17,6 +19,7 @@ type State = {
   query: string;
   searchShow: { [id: number]: Show };
   query_shows: { [query: string]: number[] };
+  cast: { [id: number]: Cast };
 };
 
 const initialState: State = {
@@ -26,6 +29,7 @@ const initialState: State = {
   query: "",
   searchShow: {},
   query_shows: {},
+  cast: {},
 };
 
 function showReducer(state = initialState, action: AnyAction): State {
@@ -63,6 +67,13 @@ function showReducer(state = initialState, action: AnyAction): State {
         draft.loading = false;
         draft.searchShow[detail.id] = detail;
         draft.shows[detail.id] = detail;
+      });
+    case SHOW_CAST_LOADED:
+      return produce(state, (draft) => {
+        const castArr = action.payload as Cast[];
+        const castEntity = new schema.Entity("cast");
+        const normalizedCast = normalize(castArr, [castEntity]);
+        draft.cast = normalizedCast.entities.cast || {};
       });
     default:
       return state;

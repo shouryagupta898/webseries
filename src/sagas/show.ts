@@ -1,6 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { Action } from "../actions";
 import {
+  ShowCastLoadedAction,
   ShowDetailLoadedAction,
   ShowsLoadedAction,
   ShowsQueryLoadedAction,
@@ -23,5 +24,5 @@ export function* getShowDetailSaga(action: Action): Generator<any, any, any> {
 
 export function* getCastSaga(action: Action): Generator<any, any, any> {
   const cast = yield call(getCast, action.payload);
-  console.log("cast", cast);
+  yield put(ShowCastLoadedAction(cast));
 }

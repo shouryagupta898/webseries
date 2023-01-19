@@ -37,3 +37,10 @@ export const ShowDetailLoadedAction: ActionCreator<Show> = (show: Show) => ({
   type: SHOW_DETAIL_LOADED,
   payload: show,
 });
+
+export const SHOW_CAST_LOADED = "SHOW_CAST_LOADED";
+
+export const ShowCastLoadedAction: ActionCreator<Cast[]> = (cast: Cast[]) => ({
+  type: SHOW_CAST_LOADED,
+  payload: cast,
+});

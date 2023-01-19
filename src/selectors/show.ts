@@ -43,3 +43,12 @@ export const searchSelector = createSelector(
   (searchMap, query, queryShowMap) =>
     queryShowMap[query] ? queryShowMap[query].map((id) => searchMap[id]) : []
 );
+
+export const castMapSelector = createSelector(
+  stateSelector,
+  (state) => state.cast
+);
+
+export const castSelector = createSelector(castMapSelector, (normalizedCast) =>
+  Object.keys(normalizedCast).map((id) => normalizedCast[+id])
+);

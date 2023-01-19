@@ -21,6 +21,7 @@ export const fetchDetailAction: ActionCreator<number> = (id: number) => ({
 
 export const FETCH_CAST = "FETCH_CAST";
 
-export const fetchCastAction: ActionCreator = () => ({
+export const fetchCastAction: ActionCreator<number> = (id: number) => ({
   type: FETCH_CAST,
+  payload: id,
 });

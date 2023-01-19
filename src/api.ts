@@ -36,8 +36,8 @@ export const getShowDetail = async (id: number) => {
 };
 
 export const getCast = async (id: number) => {
-  const resp = await axios.get<{ cast: Cast }[]>(
+  const resp = await axios.get<{ person: Cast }[]>(
     " https://api.tvmaze.com/shows/" + id + "/cast"
   );
-  return resp.data.map((c) => c.cast);
+  return resp.data.map((items) => items.person);
 };
