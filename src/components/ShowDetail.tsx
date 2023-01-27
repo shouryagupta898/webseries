@@ -5,13 +5,13 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
 import { State } from "../store";
 import {
-  castSelector,
+  // castSelector,
   loadingSelector,
   searchMapSelector,
 } from "../selectors/show";
 import { Card, Rating } from "@mui/material";
-import { fetchCastAction, fetchDetailAction } from "../actions/saga";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { fetchCastAction, fetchDetailAction } from "../slices/Shows";
 type OwnProps = {} & WithRouterProps;
 
 type ShowDetailProps = ReduxProps & OwnProps;
@@ -25,7 +25,7 @@ const ShowDetail: FC<ShowDetailProps> = ({
   loadDetail,
   loading,
   loadCast,
-  cast,
+  // cast,
 }) => {
   useEffect(() => {
     loadDetail(+params.id);
@@ -109,7 +109,7 @@ const ShowDetail: FC<ShowDetailProps> = ({
       <Card className="flex flex-col p-2 m-4 bg-gray-200 ">
         <h1 className="text-2xl font-serif font-bold self-center">CAST</h1>
 
-        <div className="grid grid-cols-6 p-4 bg-white">
+        {/* <div className="grid grid-cols-6 p-4 bg-white">
           {cast.map((c) => (
             <div key={c.id}>
               <Card className="h-24 w-24 mt-2">
@@ -122,7 +122,7 @@ const ShowDetail: FC<ShowDetailProps> = ({
               <h2 className="text-xs">{c.name}</h2>
             </div>
           ))}
-        </div>
+        </div> */}
       </Card>
     </Card>
   );
@@ -132,7 +132,7 @@ const mapStateToProps = (state: State, ownProps: OwnProps) => {
   return {
     show: searchMapSelector(state)[+ownProps.params.id],
     loading: loadingSelector(state),
-    cast: castSelector(state),
+    // cast: castSelector(state),
   };
 };
 

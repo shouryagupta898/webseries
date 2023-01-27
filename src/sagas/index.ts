@@ -1,11 +1,11 @@
 import createSagaMiddleware from "redux-saga";
 import { debounce, takeEvery } from "redux-saga/effects";
 import {
-  FETCH_CAST,
-  FETCH_QUERY_SEARCH,
-  FETCH_SHOWS,
-  FETCH_SHOW_DETAIL,
-} from "../actions/saga";
+  fetchCastAction,
+  fetchDetailAction,
+  fetchQueryAction,
+  fetchShowsAction,
+} from "../slices/Shows";
 import {
   getCastSaga,
   getSearchSaga,
@@ -16,10 +16,11 @@ import {
 const sagaMiddleware = createSagaMiddleware();
 
 export function* rootSaga() {
-  yield takeEvery(FETCH_SHOWS, getShowsSaga);
-  yield debounce(300, FETCH_QUERY_SEARCH, getSearchSaga);
-  yield takeEvery(FETCH_SHOW_DETAIL, getShowDetailSaga);
-  yield takeEvery(FETCH_CAST, getCastSaga);
+  console.log("rootSaga called");
+  yield takeEvery(fetchShowsAction, getShowsSaga);
+  yield debounce(300, fetchQueryAction, getSearchSaga);
+  yield takeEvery(fetchDetailAction, getShowDetailSaga);
+  yield takeEvery(fetchCastAction, getCastSaga);
 }
 
 export default sagaMiddleware;

@@ -17,7 +17,7 @@ export const showsQuerySelector = createSelector(
 
 export const showsMapSelector = createSelector(
   stateSelector,
-  (state) => state.shows
+  (state) => state.entities
 );
 
 export const showsSelector = createSelector(
@@ -28,7 +28,9 @@ export const showsSelector = createSelector(
 
 export const searchMapSelector = createSelector(
   stateSelector,
-  (state) => state.searchShow
+  (state) =>
+    // state.searchShow
+    state.entities
 );
 
 export const queryShowsMapSelector = createSelector(
@@ -49,6 +51,6 @@ export const castMapSelector = createSelector(
   (state) => state.cast
 );
 
-export const castSelector = createSelector(castMapSelector, (normalizedCast) =>
-  Object.keys(normalizedCast).map((id) => normalizedCast[+id])
-);
+// export const castSelector = createSelector(castMapSelector, (normalizedCast) =>
+//   Object.keys(normalizedCast).map((id) => normalizedCast[+id])
+// );

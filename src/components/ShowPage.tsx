@@ -1,6 +1,5 @@
 import { FC, memo, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { fetchQueryAction, fetchShowsAction } from "../actions/saga";
 import {
   loadingSelector,
   searchSelector,
@@ -11,6 +10,8 @@ import { State } from "../store";
 import ShowView from "./ShowView";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import SearchIcon from "@mui/icons-material/Search";
+import { fetchQueryAction, fetchShowsAction } from "../slices/Shows";
+
 interface ownProps {}
 
 type ShowPageProps = ReduxProps;
@@ -23,6 +24,7 @@ const ShowPage: FC<ShowPageProps> = ({
   query,
   searchShow,
 }) => {
+  console.log("searchShow", searchShow);
   useEffect(() => {
     getShows();
   }, []);
